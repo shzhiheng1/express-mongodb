@@ -7,9 +7,12 @@ var logger = require('morgan');
 
 // 判断环境
 if (process.env.NODE_ENV==='production') {
-  require('dotenv').config({ path: 'production.env' })
+  // require('dotenv').config({ path: 'production.env' })
+  console.log('--------设置生成环境的配置------------')
+  require('dotenv').config({path: path.join(__dirname, 'production.env')})
 }else{
-  require('dotenv').config({ path: 'development.env' })
+  require('dotenv').config({path: path.join(__dirname, 'development.env')})
+  // require('dotenv').config({ path: 'development.env' })
 }
 
 // 链接mongoose (注意要放到环境代码下面)
