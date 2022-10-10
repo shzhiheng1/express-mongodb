@@ -7,7 +7,7 @@ docker rmi expressimage;
 docker build -t expressimage:$image_version .;
 echo '-------------镜像创建成功----------------';
 docker images;
-docker run -p 8081:8081 -d --name expresscontainer expressimage:$image_version;
+docker run -p 3001:3001 -d --name expresscontainer expressimage:$image_version;
 echo '-------------容器启动成功----------------';
 docker logs expresscontainer;
 # 1、删除所有悬空镜像，不删除未使用镜像：docker rmi $(docker images -f "dangling=true" -q)
