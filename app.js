@@ -4,15 +4,13 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-// require('dotenv').config({ path: './.env.production' })
+
+
 // 判断环境
 if (process.env.NODE_ENV==='production') {
-  console.log('--------设置生成环境的配置------------')
-  require('dotenv').config({ path: './.env.production' })
-//   require('dotenv').config({path: path.join(__dirname, 'production.env')})
+  require('dotenv').config({ path: '.env.production' })
 }else{
-//   require('dotenv').config({path: path.join(__dirname, 'development.env')})
-  require('dotenv').config({ path: './development.env' })
+  require('dotenv').config({ path: '.env.development' })
 }
 
 // 链接mongoose (注意要放到环境代码下面)
