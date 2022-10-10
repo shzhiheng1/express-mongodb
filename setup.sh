@@ -1,6 +1,6 @@
 image_version=`date +%Y%m%d%H%M`;
 echo $image_version;
-git pull --rebase origin master;
+git pull origin master;
 docker stop expresscontainer;
 docker rm expresscontainer;
 docker rmi expressimage;
