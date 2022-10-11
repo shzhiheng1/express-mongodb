@@ -3,7 +3,6 @@ echo $image_version;
 git pull origin master;
 docker stop expresscontainer;
 docker rm expresscontainer;
-docker rmi expressimage;
 docker build -t expressimage:$image_version .;
 echo '-------------镜像创建成功----------------';
 docker images;
