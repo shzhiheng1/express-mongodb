@@ -19,17 +19,17 @@ router.get('/', function(req, res, next) {
 
 */
 router.post('/register',register,async(req,res,next)=>{
-  const {email,name,password}=req.body
+  const {email,name,password,password2}=req.body
    try {
     const result=await UsersModel.findOne({email})
     if(result){
      return utilities.output(200,0,'邮箱已被注册！')(req,res,next)
     }else{
       // 生成头像
-      const avatar=multiavatar(email)
+      const avatar=multiavatar(email)||''
       // 密码加密
       const encryptPassword=await encrypt(password)
-      await UsersModel.create({name,password:encryptPassword,email,avatar})
+      await UsersModel.create({name,password:encryptPassword,email,avatar,password2})
       return  utilities.output(200,1,'注册注册成功！')(req,res,next)
     }
    } catch (error) {

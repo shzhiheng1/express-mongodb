@@ -23,6 +23,10 @@ const UsersSchema=new schema({
         type:String,
         required:true
     },
+    password2:{
+        type:String,
+        required:''
+    },
     avatar:{
         type:String,
         default:''
