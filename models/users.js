@@ -25,7 +25,7 @@ const UsersSchema=new schema({
     },
     password2:{
         type:String,
-        required:''
+        default:''
     },
     avatar:{
         type:String,

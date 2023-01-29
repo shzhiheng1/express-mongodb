@@ -25,8 +25,9 @@ router.post('/register',register,async(req,res,next)=>{
     if(result){
      return utilities.output(200,0,'邮箱已被注册！')(req,res,next)
     }else{
-      // 生成头像
-      const avatar=multiavatar(email)||''
+      // 生成头像(为了节省空间)
+      // const avatar=multiavatar(email)||''
+      const avatar=''
       // 密码加密
       const encryptPassword=await encrypt(password)
       await UsersModel.create({name,password:encryptPassword,email,avatar,password2})
@@ -64,8 +65,10 @@ router.post('/login',async (req,res,next)=>{
 // 获取用户信息
 router.post('/info',authToken,async (req,res,next)=>{
    try {
+      // 解码token
       const data=await decodeToken(req);
-      const result=await UsersModel.findOne({email:data.email})
+      const userInfo=await UsersModel.findOne({email:data.email})
+      const result={name:userInfo.name,email:userInfo.email,avatar:userInfo.avatar}
       return utilities.output(200,1,'获取用户信息成功！',result)(req,res,next)
     } catch (error) {
       return utilities.output(500,-1,'服务器异常！')(req,res,next)
