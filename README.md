@@ -39,6 +39,7 @@
 2. 前端生产地址：http://124.71.194.39:8001/#/home
 3. 后端生产地址：http://124.71.194.39:3001
 4. 数据库地址：mongodb://shizhiheng:123456@124.71.194.39:27017/testdb
+5. 数据库的账号密码：admin:password | shizhiheng:123456 | root:root
 
 
 
