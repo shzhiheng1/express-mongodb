@@ -1,3 +1,13 @@
+#判断是否启动redis
+NAME="myredis"	# 容器名称
+if [[ -n $(docker ps -q -f "name=${NAME}") ]];then
+    echo "myredis is running"
+else
+    echo "myredis is down!"
+    docker restart $NAME
+fi
+
+# 重构容器
 image_version=`date +%Y%m%d%H%M`;
 echo $image_version;
 git pull origin master;
