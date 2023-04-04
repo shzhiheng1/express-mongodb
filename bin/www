@@ -88,3 +88,6 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+// socket连接
+require('../lib/socket.js')

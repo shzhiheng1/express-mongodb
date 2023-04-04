@@ -12,6 +12,12 @@ const nodemailer=require('nodemailer')
 // 连接redis
 const client=require('../lib/redis');
 
+// 定时任务
+var cron = require('node-cron');
+// socket
+var io=require('../lib/socket')
+
+
 /* /users*/
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
@@ -105,6 +111,12 @@ router.post('/login',async (req,res,next)=>{
       if(encryptSuccess){
         // 生成token
        const token= generateToken({email,name:result.name})
+      //  定时任务
+       cron.schedule('0 0 */1 * * *', () => {
+        console.log('------定时任务每小时发送一socket------');
+        io.emit('sendLogin','你辛苦了，该休息一下了！');
+      });
+      
        return utilities.output(200,1,'登录成功！',{token:"Bearer "+token})(req,res,next)
       }else{
         return utilities.output(200,0,'密码不正确！')(req,res,next)
