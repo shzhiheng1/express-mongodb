@@ -11,6 +11,10 @@ const UsersSchema=new schema({
        default:shortid.generate,
        index:true
     },
+    socketId:{
+        type:String,
+        default:''
+    },
     name:{
         type:String,
         required:true
